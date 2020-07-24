@@ -3,34 +3,26 @@
 import time
 from time import strftime
 import datetime as dt
-import os
+import os, sys
 
-# displays the amount of time remaining on screen
-# according to the amount of time set in
-# MINUTES, 1 <= min <= 60
+# output countdown timer according to MIN input
+# where: 1 <= MIN <= infinity
 def countdown_display(min):
     start_time = dt.datetime.now()
     target_time = start_time + dt.timedelta(minutes = min)
     time_remaining = target_time - start_time
-    # print("Begin countdown.")
-    # print("\t\tH:MM:SS")
     os.system("clear")
-    print("\t\t\t\t     Time remaining")
+    print("\t\t\t\t        TIME LEFT")
     while str(time_remaining)[0:7] != '0:00:00':
         current_time = dt.datetime.now()
         time_remaining = target_time - current_time
-        print("\t\t\t\t\t"+str(time_remaining)[0:7], end="\r", flush=True)
+        print("\t\t\t\t\t "+str(time_remaining)[0:7], end="\r", flush=True)
         time.sleep(1)
     print(flush=True)
-    # os.system("clear")
-    print("\t\t\t\t     Time complete")
-    input("\t\t\t\t  Press ENTER to exit")
+    print("\t\t\t\t      TIME COMPLETE")
+    input("\t\t\t\t   PRESS enter TO EXIT")
     os.system("clear")
 
-countdown_display(1)
-
-# def main():
-
-
-# if __name__ == "__main__":
+if __name__ == "__main__":
+    countdown_display(int(sys.argv[1]))
 
