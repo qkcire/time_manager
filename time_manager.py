@@ -22,7 +22,7 @@ def menu():
     print("(0) EXIT")
     select = int(input("Enter work type number: "))
     if select < 0 or select > 4:
-        print("Error: selection not recognized")
+        print("Selection not recognized. Try again.")
     else:
         print("You selected " + str(select) + " as your option.")
     return select
@@ -45,30 +45,32 @@ def countdown_display(min, work_type):
     end_time = dt.datetime.now()
     print(flush=True)
     print("TIME COMPLETE")
-    input("PRESS enter TO SAVE DATA AND CONTINUE")
+    start_page, end_page = map(int, input("Enter the start page, end page: ").split(", "))
+    input("PRESS enter to SAVE DATA AND CONTINUE")
     # start timestamp
     start_time_tuple = int(start_time.strftime("%Y%m%d")), int(start_time.strftime("%H%M%S"))
     start = int(str(start_time_tuple[0]) + str(start_time_tuple[1]))
     # end timestamp
     end_time_tuple = int(end_time.strftime("%Y%m%d")), int(end_time.strftime("%H%M%S"))
     end = int(str(end_time_tuple[0]) + str(end_time_tuple[1]))
-    save_data(work_type, start, end)
+    save_data(work_type, start, end, end_page, start_page)
     os.system("clear")
 
 def alarm_clock():
     pass
 
-def save_data(work_type, start_time, end_time):
-    with open('time_manager_data.csv', 'a') as file:
+def save_data(work_type, start_time, end_time, end_page=0, start_page=0):
+    with open('data_time_manager.csv', 'a') as file:
         writer = csv.writer(file)
-        writer.writerow([end_time, start_time, work_type])
+        writer.writerow([start_time, end_time, work_type, start_page, end_page])
         # writer.writerow([work_type, start_time, end_time])
     input("DATA SAVED. PRESS enter to CONTINUE")
 
 def break_time():
     print("BREAK TIME!")
-    print("Go away, read some books!")
+    print("BOOK TIME!")
     input("Press Enter when ready to continue")
+    os.system("clear")
 
 def main():
     option = 99
@@ -79,7 +81,7 @@ def main():
             print("You've chose to work on: " + work[option].upper())
             print("60 minutes has been set for this work.")
             input("Press ENTER to start time")
-            countdown_display(1, option)
+            countdown_display(5, option)
             break_time()
 
 
