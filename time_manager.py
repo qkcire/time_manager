@@ -15,7 +15,7 @@ work = {
 # program main menu
 def menu():
     os.system("clear")
-    print("(1) C Programming Book")
+    print("(1) C Programming")
     print("(2) ARM Programming")
     print("(3) Math Maturity")
     print("(4) Fitness")
