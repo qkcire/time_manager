@@ -20,7 +20,7 @@ def menu():
     print("(3) Math Maturity")
     print("(4) Fitness")
     print("(0) EXIT")
-    select = int(input("Enter work type number: "))
+    select = int(input("ENTER WORK TYPE: "))
     if select < 0 or select > 4:
         print("Selection not recognized. Try again.")
     else:
@@ -68,18 +68,19 @@ def timer(work_num):
             current_time = dt.datetime.now()
             if resumed_time:
                 delta_prime = current_time - resumed_time + delta
-                print("TIME INVESTED "+str(delta_prime)[0:7], end="\r", flush=True)
+                print(" TIME INVESTED ON "+work[work_num].upper()+" +"+str(delta_prime)[0:7], end="\r", flush=True)
             else:
                 delta = current_time - init_start_time
-                print("TIME INVESTED "+str(delta)[0:7], end="\r", flush=True)
+                print(" TIME INVESTED ON "+work[work_num].upper()+" +"+str(delta)[0:7], end="\r", flush=True)
             time.sleep(1)            
         except KeyboardInterrupt:
             os.system("clear")
             if resumed_time:
-                print("TIME PAUSED @ " + str(delta_prime)[0:7])
+                print(" TIME PAUSED @ " + str(delta_prime)[0:7])
             else:
-                print("TIME PAUSED @ " + str(delta)[0:7])
-            resume = int(input("press 1 to continue or 0 to end timer: "))
+                print(" TIME PAUSED @ " + str(delta)[0:7])
+            resume = int(input(" PRESS (1) TO CONTINUE OR (0) TO END: "))
+            os.system("clear")
             if resume:
                 if resumed_time:
                     save_data(work_num, resumed_time, current_time)
@@ -103,10 +104,10 @@ def main():
         work_num = menu()
         if work_num in work.keys():
             os.system("clear")
-            print("You've chose to work on: " + work[work_num].upper())
-            input("Press ENTER to start time")
+            print(" YOU'VE CHOSEN TO WORK ON: " + work[work_num].upper())
+            input(" PRESS (ENTER) TO START. . . ")
             timer(work_num)
-
+    os.system("clear")
 
 if __name__ == "__main__":
     main()
