@@ -43,10 +43,13 @@ def break_time():
     os.system("clear")
 
 def convert_time_format(start_time, end_time):
+    # date and time concatonated into a string
+    # example 2020/07/25 12:11:31 - > 2020-07-25 12:11:31
     start = start_time.strftime("%Y-%m-%d %H:%M:%S")
     end = end_time.strftime("%Y-%m-%d %H:%M:%S")
     return start, end
     # a long int (concatonated date + time)
+    # example 2020/07/25 12:11:31 -> 20200725121131
     # start_time_tuple = int(start_time.strftime("%Y%m%d")), int(start_time.strftime("%H%M%S"))
     # start = int(str(start_time_tuple[0]) + str(start_time_tuple[1]))
     # end_time_tuple = int(end_time.strftime("%Y%m%d")), int(end_time.strftime("%H%M%S"))
