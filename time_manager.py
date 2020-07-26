@@ -100,7 +100,6 @@ def timer(work_num):
                 print("TIME INVESTED "+str(delta_prime)[0:7], end="\r", flush=True)
             else:
                 delta = current_time - init_start_time
-                # delta_prime = current_time - init_start_time
                 print("TIME INVESTED "+str(delta)[0:7], end="\r", flush=True)
             time.sleep(1)            
         except KeyboardInterrupt:
@@ -126,18 +125,6 @@ def timer(work_num):
                 else:
                     save_data(work_num, init_start_time, current_time)
     return
-    # try:
-    #     while True:
-    #         current_time = dt.datetime.now()
-    #         delta = current_time - start_time
-    #         print("TIME INVESTED "+str(delta)[0:7], end="\r", flush=True)
-    #         time.sleep(1)
-    # except KeyboardInterrupt:
-    #     os.system("clear")
-
-    #     print("TIME PAUSED @ " + str(delta)[0:7])
-    #     input("press ENTER to continue")
-    #     return
 
 def main():
     work_num = 99
