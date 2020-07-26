@@ -89,33 +89,42 @@ def timer(work_num):
     ON = True
     OFF = False
     init_start_time = dt.datetime.now()
-    cntd_time = 0
+    delta = 0
+    resumed_time = 0
     os.system("clear")
     while ON:
         try:
             current_time = dt.datetime.now()
-            # if cntd_time:
-            #     delta = current_time - init_start_time + cntd_time
-            # else:
-            #     delta = current_time - init_start_time
-            delta = current_time - init_start_time
-            print("TIME INVESTED "+str(delta)[0:7], end="\r", flush=True)
+            if resumed_time:
+                delta_prime = current_time - resumed_time + delta
+                print("TIME INVESTED "+str(delta_prime)[0:7], end="\r", flush=True)
+            else:
+                delta = current_time - init_start_time
+                # delta_prime = current_time - init_start_time
+                print("TIME INVESTED "+str(delta)[0:7], end="\r", flush=True)
             time.sleep(1)            
         except KeyboardInterrupt:
             os.system("clear")
-            print("TIME PAUSED @ " + str(delta)[0:7])
-            pause = int(input("press 1 to continue or 0 to end timer: "))
-            if pause == 1:
-                if cntd_time:
-                    save_data(work_num, cntd_time, current_time)
+            if resumed_time:
+                print("TIME PAUSED @ " + str(delta_prime)[0:7])
+            else:
+                print("TIME PAUSED @ " + str(delta)[0:7])
+            resume = int(input("press 1 to continue or 0 to end timer: "))
+            if resume:
+                if resumed_time:
+                    save_data(work_num, resumed_time, current_time)
+                    delta = delta_prime
                 else:
                     save_data(work_num, init_start_time, current_time)
-                    cntd_time = dt.datetime.now()
+                resumed_time = dt.datetime.now()
                 continue
-                # cntd_time = dt.timedelta(seconds=(current_time - init_start_time).seconds)
-                # continue
             else:
                 ON = OFF
+                if resumed_time:
+                    save_data(work_num, resumed_time, current_time)
+                    delta = delta_prime
+                else:
+                    save_data(work_num, init_start_time, current_time)
     return
     # try:
     #     while True:
