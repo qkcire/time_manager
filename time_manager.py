@@ -37,11 +37,17 @@ def countdown_display(min, work_type):
     print(start_time)
     print("Working on: " + work[work_type])
     # print("TIME LEFT")
-    while str(time_remaining)[0:7] != '0:00:00':
-        current_time = dt.datetime.now()
-        time_remaining = target_time - current_time
-        print(" TIME LEFT  "+str(time_remaining)[0:7], end="\r", flush=True)
-        time.sleep(1)
+    try:
+        while str(time_remaining)[0:7] != '0:00:00':
+            current_time = dt.datetime.now()
+            time_remaining = target_time - current_time
+            print(" TIME LEFT  "+str(time_remaining)[0:7], end="\r", flush=True)
+            time.sleep(1)
+    except KeyboardInterrupt:
+        print("Keyboard pause initiated.")
+        print("Ending clock.")
+        return
+
     end_time = dt.datetime.now()
     print(flush=True)
     print("TIME COMPLETE")
