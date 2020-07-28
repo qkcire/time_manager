@@ -6,19 +6,21 @@ import datetime as dt
 import os, sys, csv
 
 work = {
-    1: "c_programming",
-    2: "arm_programming",
-    3: "math_maturity",
+    1: "c programming",
+    2: "arm programming",
+    3: "math maturity",
     4: "fitness",
+    5: "wasting time",
+    6: "sleep",
+    7: "music",
+    8: "family"
 }
 
 # program main menu
 def menu():
     os.system("clear")
-    print("(1) C Programming")
-    print("(2) ARM Programming")
-    print("(3) Math Maturity")
-    print("(4) Fitness")
+    for key, value in work.items():
+        print('({0}) {1}'.format(key, value).upper())
     print("(0) EXIT")
     select = int(input("ENTER WORK TYPE: "))
     if select < 0 or select > 4:
