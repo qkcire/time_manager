@@ -6,14 +6,10 @@ import datetime as dt
 import os, sys, csv
 
 work = {
-    1: "c programming",
-    2: "arm programming",
-    3: "math maturity",
-    4: "fitness",
-    5: "wasting time",
-    6: "sleep",
-    7: "music",
-    8: "family"
+    1: "Blockchain",
+    2: "Security",
+    3: "Academics",
+    4: "wasting time"
 }
 
 # program main menu
